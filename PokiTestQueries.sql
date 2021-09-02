@@ -41,3 +41,48 @@
 --ON
 --	a.GenderId = gn.Id
 --ORDER BY a.Name;
+
+--SELECT
+--	SUM(WordCount)
+--FROM
+--	Poem;
+
+--SELECT
+--	CharCount
+--FROM
+--	Poem
+--WHERE
+--	CharCount = (
+--		SELECT
+--			MIN(CharCount)
+--		FROM
+--			Poem);
+
+--SELECT
+--	COUNT(DISTINCT a.Id)
+--FROM
+--	Author a
+--JOIN
+--	Grade g
+--ON 
+--	a.GradeId = g.Id
+--WHERE
+--	g.Id = 3;
+
+--SELECT
+--	COUNT(DISTINCT a.Id)
+--FROM
+--	Author a
+--JOIN
+--	Grade g
+--ON 
+--	a.GradeId = g.Id
+--WHERE
+--	g.Id = 1
+--OR
+--	g.Id = 2
+--OR
+--	g.Id = 3;
+
+
+
