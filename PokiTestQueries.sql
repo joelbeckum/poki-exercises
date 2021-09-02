@@ -179,30 +179,30 @@
 
 --Which author(s) have the most poems? (Remember authors can have the same name.)
 
---SELECT c1.Name, c1.NumOfPoems
---FROM (SELECT 
---		a.Name,
---		COUNT(p.Id) 'NumOfPoems'
---	FROM
---		Author a
---	JOIN
---		Poem p ON a.Id = p.AuthorId
---	GROUP BY
---		a.Name) AS c1
---WHERE
---	c1.NumOfPoems = 
---		(SELECT
---			MAX(c.NumOfPoems)
---		FROM
---			(SELECT
---				a.Name,
---				COUNT(p.Id) 'NumOfPoems'
---			FROM
---				Author a
---			JOIN
---				Poem p ON a.Id = p.AuthorId
---			GROUP BY
---				a.Name) as c);
+SELECT c1.Name, c1.NumOfPoems
+FROM (SELECT 
+		a.Name,
+		COUNT(p.Id) 'NumOfPoems'
+	FROM
+		Author a
+	JOIN
+		Poem p ON a.Id = p.AuthorId
+	GROUP BY
+		a.Id, a.Name) AS c1
+WHERE
+	c1.NumOfPoems = 
+		(SELECT
+			MAX(c.NumOfPoems)
+		FROM
+			(SELECT
+				a.Name,
+				COUNT(p.Id) 'NumOfPoems'
+			FROM
+				Author a
+			JOIN
+				Poem p ON a.Id = p.AuthorId
+			GROUP BY
+				a.Id, a.Name) as c);
 
 
 --How many poems have an emotion of sadness?
