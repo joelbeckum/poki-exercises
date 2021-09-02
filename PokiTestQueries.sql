@@ -179,30 +179,17 @@
 
 --Which author(s) have the most poems? (Remember authors can have the same name.)
 
-SELECT c1.Name, c1.NumOfPoems
-FROM (SELECT 
-		a.Name,
-		COUNT(p.Id) 'NumOfPoems'
-	FROM
-		Author a
-	JOIN
-		Poem p ON a.Id = p.AuthorId
-	GROUP BY
-		a.Id, a.Name) AS c1
-WHERE
-	c1.NumOfPoems = 
-		(SELECT
-			MAX(c.NumOfPoems)
-		FROM
-			(SELECT
-				a.Name,
-				COUNT(p.Id) 'NumOfPoems'
-			FROM
-				Author a
-			JOIN
-				Poem p ON a.Id = p.AuthorId
-			GROUP BY
-				a.Id, a.Name) as c);
+--SELECT TOP 5
+--	a.Name,
+--	COUNT(p.Id) 'NumOfPoems'
+--FROM
+--	Author a
+--JOIN
+--	Poem p on a.Id = p.AuthorId
+--GROUP BY
+--	a.Id, a.Name
+--ORDER BY
+--	NumOfPoems DESC;
 
 
 --How many poems have an emotion of sadness?
@@ -233,6 +220,21 @@ WHERE
 
 --Which emotion is associated with the least number of poems?
 
+--SELECT TOP 1
+--	e.Name 'Emotion',
+--	COUNT(p.Id) 'NumOfPoems'
+--FROM
+--	Emotion e
+--JOIN
+--	PoemEmotion pe ON e.Id = pe.EmotionId
+--JOIN
+--	Poem p ON pe.PoemId = p.Id
+--GROUP BY
+--	e.Name
+--ORDER BY
+--	NumOfPoems;
+
+-- ** ALTERNATE SOLUTION **
 --SELECT c1.Name, c1.NumOfPoems
 --    FROM (SELECT
 --			e.Name,
@@ -260,6 +262,7 @@ WHERE
 --			Poem p ON pe.PoemId = p.Id
 --		GROUP BY
 --			e.Name) as c);
+
 		
 
 
